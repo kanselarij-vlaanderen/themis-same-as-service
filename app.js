@@ -21,7 +21,7 @@ app.post('/delta', async function (req, res, next) {
       console.log(`Found ${statusTriples.length} release tasks.`);
       const task = await getNextReleaseTask();
       if (task) {
-        console.log(`Start releasing new DCAT data`);
+        console.log(`Starting same-as check`);
         task.execute(); // errors are handled inside task.execute()
         return res.status(202).end();
       } else {
