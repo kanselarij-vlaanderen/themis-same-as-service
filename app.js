@@ -21,20 +21,20 @@ app.post('/delta', async function (req, res, next) {
       console.log(`Found ${statusTriples.length} release tasks.`);
       const task = await getNextReleaseTask();
       if (task) {
-        console.log(`Starting same-as check`);
+        console.log('Starting same-as check');
         task.execute(); // errors are handled inside task.execute()
         return res.status(202).end();
       } else {
-        console.log(`No scheduled release task found.`);
+        console.log('No scheduled release task found.');
         return res.status(200).end();
       }
     } else {
-      console.log(`No triples found in the delta message.`);
-      res.status(200).end();
+      console.log('No triples found in the delta message.');
+      return res.status(200).end();
     }
   } else {
-    console.log('No release task found in delta message.');
-    res.end('No release task found in delta message.');
+    console.log('There is already a release task running. Task from delta message will be executed later.');
+    return res.end('There is already a release task running..');
   }
 });
 
