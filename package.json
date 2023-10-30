@@ -1,6 +1,6 @@
 {
   "name": "themis-same-as-service",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Microservice ensuring stable and resolvable URIs for publications on Themis",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
