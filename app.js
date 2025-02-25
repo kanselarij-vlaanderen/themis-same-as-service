@@ -1,5 +1,6 @@
 import { app, errorHandler } from 'mu';
-import { getRunningReleaseTask, getNextReleaseTask, TASK_NOT_STARTED_STATUS } from './lib/release-task';
+import { getRunningReleaseTask, getNextReleaseTask } from './lib/release-task';
+import { RELEASE_TASK_STATUSES } from './config';
 import flatten from 'lodash.flatten';
 import bodyParser from 'body-parser';
 
@@ -27,7 +28,7 @@ app.post('/delta', async function (req, res, next) {
     const inserts = flatten(delta.map(changeSet => changeSet.inserts));
     const statusTriples = inserts.filter((t) => {
       return t.predicate.value == 'http://www.w3.org/ns/adms#status'
-        && t.object.value == TASK_NOT_STARTED_STATUS;
+        && t.object.value == RELEASE_TASK_STATUSES.NOT_STARTED;
     });
 
     if (statusTriples.length) {
