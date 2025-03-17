@@ -58,7 +58,7 @@ app.post('/delta', async function (req, res, next) {
       return res.end('There is already a release task running..');
     }
   } catch (error) {
-    console.log('The processing of delta message has failed.');
+    console.log('The processing of the delta message has failed.');
     console.trace(error);
     return res.status(500).end();
   }
